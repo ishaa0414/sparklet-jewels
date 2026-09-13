@@ -8,13 +8,7 @@ import { Search, Heart as HeartIcon, ShoppingBag, Menu, X } from 'lucide-react';
 import { Heart, Sparkle, Star } from '@/components/ui/ScrapbookDecorations';
 import { cn } from '@/lib/utils';
 
-const NAV_LINKS = [
-  { label: 'SHOP', href: '/shop' },
-  { label: 'NEW IN', href: '/new-in' },
-  { label: 'BESTSELLERS', href: '/bestsellers' },
-  { label: 'COLLECTIONS', href: '/collections' },
-  { label: 'ABOUT', href: '/about' },
-];
+const NAV_LINKS = [{ label: 'SHOP', href: '/shop' }];
 
 const SCROLL_THRESHOLD = 60;
 

@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/shop/ProductCard';
-import { Sparkle, BowRibbon } from '@/components/ui/ScrapbookDecorations';
+import { Sparkle } from '@/components/ui/ScrapbookDecorations';
 import { products } from '@/lib/data/products';
 import { cn } from '@/lib/utils';
 import type { Category } from '@/types';
@@ -65,19 +65,6 @@ function AnimatedCell({
     >
       {children}
     </motion.div>
-  );
-}
-
-function EditorialInsert() {
-  return (
-    <div
-      className="flex h-full min-h-[220px] flex-col items-center justify-center gap-2 border-[1.5px] border-dashed border-blush-300 bg-blush-200 p-4 text-center"
-      style={{ borderRadius: '4px 12px 8px 10px' }}
-    >
-      <BowRibbon size={28} color="#F27AA2" />
-      <p className="rotate-[-1deg] font-handwritten text-base text-blush-600">treat yourself ♡</p>
-      <p className="font-sans text-[11px] text-[#9B8B91]">free shipping over ₹999</p>
-    </div>
   );
 }
 
@@ -155,21 +142,11 @@ export default function ProductGrid() {
         </div>
 
         <div key={activeTab} className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
-          {featuredProducts.flatMap((product, index) => {
-            const cells = [
-              <AnimatedCell key={product.id} staggerIndex={index}>
-                <ProductCard product={product} variant={variantFor(index)} index={index} />
-              </AnimatedCell>,
-            ];
-            if (index === 3) {
-              cells.push(
-                <AnimatedCell key="editorial-insert" staggerIndex={4}>
-                  <EditorialInsert />
-                </AnimatedCell>
-              );
-            }
-            return cells;
-          })}
+          {featuredProducts.map((product, index) => (
+            <AnimatedCell key={product.id} staggerIndex={index}>
+              <ProductCard product={product} variant={variantFor(index)} index={index} />
+            </AnimatedCell>
+          ))}
         </div>
 
         <div className="mt-6 lg:hidden">

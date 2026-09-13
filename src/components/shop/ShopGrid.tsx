@@ -105,24 +105,6 @@ function ShopPageHeader() {
   );
 }
 
-function CollectionCallout({ onShopEdit }: { onShopEdit: () => void }) {
-  return (
-    <div
-      className="flex flex-col items-center gap-2 border-[1.5px] border-dashed border-blush-300 bg-blush-200 px-5 py-6 text-center"
-      style={{ borderRadius: '4px 12px 6px 14px', gridColumn: '1 / -1' }}
-    >
-      <Star size={22} color="#E94F83" />
-      <h3 className="font-handwritten text-xl text-blush-600">EVERYDAY SPARKLES ✦</h3>
-      <p className="max-w-xs font-sans text-xs text-charcoal-soft">
-        pieces you&apos;ll reach for every single day
-      </p>
-      <Button variant="outline" size="sm" onClick={onShopEdit} className="mt-1">
-        SHOP THIS EDIT →
-      </Button>
-    </div>
-  );
-}
-
 function EmptyState({ onReset }: { onReset: () => void }) {
   return (
     <div className="col-span-full flex flex-col items-center gap-3 py-20 text-center">
@@ -164,23 +146,13 @@ export default function ShopGrid() {
 
   const resetToAll = () => handleCategoryChange('ALL');
 
-  const gridItems = visibleProducts.flatMap((product, i) => {
+  const gridItems = visibleProducts.map((product, i) => {
     const isPolaroid = (i + 1) % 7 === 0;
-    const items = [
+    return (
       <motion.div key={product.id} variants={cardVariants}>
         <ProductCard product={product} variant={isPolaroid ? 'polaroid' : 'default'} index={i} />
-      </motion.div>,
-    ];
-
-    if (i !== 0 && i % 8 === 0) {
-      items.push(
-        <motion.div key={`callout-${product.id}`} variants={cardVariants} style={{ gridColumn: '1 / -1' }}>
-          <CollectionCallout onShopEdit={resetToAll} />
-        </motion.div>
-      );
-    }
-
-    return items;
+      </motion.div>
+    );
   });
 
   return (

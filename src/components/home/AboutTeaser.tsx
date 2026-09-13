@@ -4,12 +4,14 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import TornEdge from '@/components/ui/TornEdge';
-import Button from '@/components/ui/Button';
-import { Heart, ScrapbookFlower, Sparkle, TapeStrip, DoodleArrow } from '@/components/ui/ScrapbookDecorations';
+import { Heart, ScrapbookFlower, Sparkle, TapeStrip } from '@/components/ui/ScrapbookDecorations';
+import { products } from '@/lib/data/products';
 
 export default function AboutTeaser() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const primaryImage = products[2]?.images[0];
+  const secondaryImage = products[3]?.images[0];
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-blush-200 px-4 py-16 lg:px-6 lg:py-24">
@@ -32,14 +34,15 @@ export default function AboutTeaser() {
 
           {/* Element 2 — smaller second polaroid, peeks from behind Element 1 */}
           <div className="absolute bottom-6 right-4 z-0 rotate-[4deg] bg-white p-2 pb-6 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.2)] lg:bottom-8 lg:right-6">
-            <Image
-              src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&q=80&auto=format&fit=crop"
-              alt="Jewellery flat lay detail"
-              width={180}
-              height={180}
-              unoptimized
-              className="h-[140px] w-[180px] object-cover lg:h-[160px]"
-            />
+            {secondaryImage && (
+              <Image
+                src={secondaryImage}
+                alt={products[3].name}
+                width={180}
+                height={180}
+                className="h-[140px] w-[180px] object-cover lg:h-[160px]"
+              />
+            )}
             <p className="mt-2 text-center font-handwritten text-[13px] text-[#9B8B91]">made with ♡</p>
           </div>
 
@@ -51,14 +54,15 @@ export default function AboutTeaser() {
             >
               <TapeStrip width={70} height={20} color="#F27AA2" />
             </div>
-            <Image
-              src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=80&auto=format&fit=crop"
-              alt="The team behind the magic"
-              width={260}
-              height={220}
-              unoptimized
-              className="h-[220px] w-[260px] object-cover"
-            />
+            {primaryImage && (
+              <Image
+                src={primaryImage}
+                alt={products[2].name}
+                width={260}
+                height={220}
+                className="h-[220px] w-[260px] object-cover"
+              />
+            )}
             <p className="mt-2 text-center font-handwritten text-[13px] text-[#9B8B91]">the team behind the magic ✦</p>
           </div>
 
@@ -166,18 +170,6 @@ export default function AboutTeaser() {
               <p className="font-sans text-sm font-semibold text-charcoal">Sparklet Jewels Team</p>
               <p className="font-handwritten text-[13px] text-[#9B8B91]">founders &amp; jewellery obsessives ✦</p>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4, delay: 0.8, ease: 'easeOut' }}
-            className="relative mt-6 inline-flex items-center gap-2"
-          >
-            <DoodleArrow size={28} color="#F27AA2" className="rotate-[15deg]" />
-            <Button variant="handmade" href="/about">
-              read our full story →
-            </Button>
           </motion.div>
         </motion.div>
       </div>
