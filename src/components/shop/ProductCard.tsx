@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Heart as LucideHeart } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Heart, Sparkle, TapeStrip } from '@/components/ui/ScrapbookDecorations';
 import { openWhatsAppOrder } from '@/lib/whatsapp';
 import { cn, formatPrice } from '@/lib/utils';
@@ -28,85 +28,6 @@ const ANNOTATIONS = ['so cute omg ✦', 'bestseller for a reason ♡', 'treat yo
 function getAnnotation(id: string) {
   const n = Number.parseInt(id, 10) || 0;
   return ANNOTATIONS[n % ANNOTATIONS.length];
-}
-
-const SPARKLE_ANGLES = [0, 90, 180, 270];
-
-function SparkleParticle({ angle, onComplete }: { angle: number; onComplete: () => void }) {
-  const radians = (angle * Math.PI) / 180;
-  const x = Math.cos(radians) * 24;
-  const y = Math.sin(radians) * 24;
-
-  return (
-    <motion.span
-      className="pointer-events-none absolute left-1/2 top-1/2 z-30"
-      initial={{ opacity: 1, x: 0, y: 0, scale: 0.6 }}
-      animate={{ opacity: 0, x, y, scale: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      onAnimationComplete={onComplete}
-    >
-      <Sparkle size={10} color="#E94F83" />
-    </motion.span>
-  );
-}
-
-function WishlistButton({
-  active,
-  pulseKey,
-  onClick,
-  className,
-  dark = false,
-}: {
-  active: boolean;
-  pulseKey: number;
-  onClick: (e: React.MouseEvent) => void;
-  className?: string;
-  dark?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={active ? 'Remove from wishlist' : 'Add to wishlist'}
-      onClick={onClick}
-      className={cn(
-        'relative z-20 flex h-8 w-8 items-center justify-center rounded-full border transition-colors duration-200',
-        dark ? 'border-white/50 bg-white/85' : 'border-blush-300 bg-white/90',
-        className
-      )}
-    >
-      <motion.span key={pulseKey} animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 0.3 }} className="inline-flex">
-        <LucideHeart
-          size={14}
-          color={active ? '#E94F83' : '#9B8B91'}
-          fill={active ? '#E94F83' : 'none'}
-          strokeWidth={1.75}
-        />
-      </motion.span>
-    </button>
-  );
-}
-
-function useWishlistBurst() {
-  const [wishlisted, setWishlisted] = useState(false);
-  const [pulseKey, setPulseKey] = useState(0);
-  const [bursts, setBursts] = useState<number[]>([]);
-  const burstCounter = useRef(0);
-
-  const toggle = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const next = !wishlisted;
-    setWishlisted(next);
-    setPulseKey((k) => k + 1);
-    if (next) {
-      const id = burstCounter.current++;
-      setBursts((prev) => [...prev, id]);
-    }
-  };
-
-  const removeBurst = (id: number) => setBursts((prev) => prev.filter((b) => b !== id));
-
-  return { wishlisted, pulseKey, bursts, toggle, removeBurst };
 }
 
 function useImageCarousel(length: number) {
@@ -148,17 +69,17 @@ function CarouselControls({
         type="button"
         aria-label="Previous image"
         onClick={onPrev}
-        className="absolute left-1.5 top-1/2 z-20 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal-soft opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        className="absolute left-1.5 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal-soft opacity-80 shadow-sm transition-opacity duration-200 hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
       >
-        <ChevronLeft size={14} />
+        <ChevronLeft size={16} />
       </button>
       <button
         type="button"
         aria-label="Next image"
         onClick={onNext}
-        className="absolute right-1.5 top-1/2 z-20 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal-soft opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        className="absolute right-1.5 top-1/2 z-20 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-white/85 text-charcoal-soft opacity-80 shadow-sm transition-opacity duration-200 hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
       >
-        <ChevronRight size={14} />
+        <ChevronRight size={16} />
       </button>
       <div className="pointer-events-none absolute inset-x-0 bottom-2 z-20 flex items-center justify-center gap-1">
         {Array.from({ length: count }).map((_, i) => (
@@ -202,7 +123,6 @@ function ProductTagBadge({ tag }: { tag: ProductTag }) {
 
 export default function ProductCard({ product, variant = 'default', index, className }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
-  const { wishlisted, pulseKey, bursts, toggle, removeBurst } = useWishlistBurst();
   const images = product.images ?? [];
   const { index: imageIndex, step, goTo } = useImageCarousel(images.length || 1);
   const image = images[imageIndex] ?? images[0];
@@ -253,21 +173,6 @@ export default function ProductCard({ product, variant = 'default', index, class
             ) : (
               <ComingSoonPlaceholder />
             )}
-            <div className="absolute inset-0 z-10" aria-hidden="true">
-              <AnimatePresence>
-                {bursts.map((id) =>
-                  SPARKLE_ANGLES.map((angle) => (
-                    <SparkleParticle key={`${id}-${angle}`} angle={angle} onComplete={() => removeBurst(id)} />
-                  ))
-                )}
-              </AnimatePresence>
-            </div>
-            <WishlistButton
-              active={wishlisted}
-              pulseKey={pulseKey}
-              onClick={toggle}
-              className="absolute bottom-2 right-2"
-            />
             <CarouselControls
               count={images.length}
               index={imageIndex}
@@ -321,14 +226,6 @@ export default function ProductCard({ product, variant = 'default', index, class
 
           <Heart size={20} color="#FFFFFF" className="absolute right-4 top-4 z-10 opacity-70" />
 
-          <WishlistButton
-            active={wishlisted}
-            pulseKey={pulseKey}
-            onClick={toggle}
-            dark
-            className="absolute right-4 top-4 z-20 mt-9"
-          />
-
           <CarouselControls
             count={images.length}
             index={imageIndex}
@@ -336,24 +233,6 @@ export default function ProductCard({ product, variant = 'default', index, class
             onNext={step(1)}
             onDotClick={goTo}
           />
-
-          <div className="absolute inset-0 z-10" aria-hidden="true">
-            <AnimatePresence>
-              {bursts.map((id) =>
-                SPARKLE_ANGLES.map((angle) => (
-                  <SparkleParticle key={`${id}-${angle}`} angle={angle} onComplete={() => removeBurst(id)} />
-                ))
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="absolute inset-x-0 bottom-0 z-10 p-4">
-            <p className="truncate font-sans text-base font-semibold text-white">{product.name}</p>
-            <p className="mt-1 font-handwritten text-lg text-blush-300">{formatPrice(product.price)}</p>
-            <span className="mt-1 inline-block font-sans text-[11px] uppercase tracking-[0.08em] text-white underline underline-offset-2">
-              VIEW →
-            </span>
-          </div>
         </motion.article>
       </Link>
     );
@@ -398,22 +277,6 @@ export default function ProductCard({ product, variant = 'default', index, class
             <ComingSoonPlaceholder />
           )}
 
-          <div className="absolute inset-0 z-10" aria-hidden="true">
-            <AnimatePresence>
-              {bursts.map((id) =>
-                SPARKLE_ANGLES.map((angle) => (
-                  <SparkleParticle key={`${id}-${angle}`} angle={angle} onComplete={() => removeBurst(id)} />
-                ))
-              )}
-            </AnimatePresence>
-          </div>
-
-          <WishlistButton
-            active={wishlisted}
-            pulseKey={pulseKey}
-            onClick={toggle}
-            className="absolute right-2 top-2"
-          />
           <CarouselControls
             count={images.length}
             index={imageIndex}

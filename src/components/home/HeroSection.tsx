@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const MARQUEE_ITEM = 'NEW COLLECTION  ✦  HANDPICKED PIECES  ✦  MADE FOR EVERYDAY MAGIC  ✦  SHOP NOW  ✦  ';
@@ -32,14 +33,16 @@ export default function HeroSection() {
         className="relative block max-h-screen w-full md:hidden"
         style={{ aspectRatio: '941 / 1672' }}
       >
-        <Image
-          src="/images/hero-mobile-bg.png"
-          alt="Sparklet Jewels — jewellery for your main character era. Trendy charms, everyday joy."
-          fill
-          priority
-          sizes="100vw"
-          className="object-contain"
-        />
+        <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
+          <Image
+            src="/images/hero-mobile-bg.png"
+            alt="Sparklet Jewels — jewellery for your main character era. Trendy charms, everyday joy."
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain"
+          />
+        </Link>
       </motion.div>
 
       {/* Tablet hero artwork */}
@@ -50,14 +53,16 @@ export default function HeroSection() {
         className="relative hidden max-h-screen w-full md:block lg:hidden"
         style={{ aspectRatio: '1448 / 1086' }}
       >
-        <Image
-          src="/images/herotab.png"
-          alt="Sparklet Jewels — jewellery for your main character era. Trendy charms, everyday joy."
-          fill
-          priority
-          sizes="100vw"
-          className="object-contain"
-        />
+        <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
+          <Image
+            src="/images/herotab.png"
+            alt="Sparklet Jewels — jewellery for your main character era. Trendy charms, everyday joy."
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain"
+          />
+        </Link>
       </motion.div>
 
       {/* Desktop hero artwork */}
@@ -67,14 +72,16 @@ export default function HeroSection() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative hidden h-screen w-full lg:block"
       >
-        <Image
-          src="/images/hero-desktop-bg.png"
-          alt="Sparklet Jewels — more than jewellery, it's a mood. Little charms, big personality."
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
+          <Image
+            src="/images/hero-desktop-bg.png"
+            alt="Sparklet Jewels — more than jewellery, it's a mood. Little charms, big personality."
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </Link>
       </motion.div>
 
       <MarqueeStrip />

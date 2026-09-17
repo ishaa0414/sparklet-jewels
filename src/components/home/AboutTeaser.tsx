@@ -5,13 +5,12 @@ import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import TornEdge from '@/components/ui/TornEdge';
 import { Heart, ScrapbookFlower, Sparkle, TapeStrip } from '@/components/ui/ScrapbookDecorations';
-import { products } from '@/lib/data/products';
 
 export default function AboutTeaser() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const primaryImage = products[2]?.images[0];
-  const secondaryImage = products[3]?.images[0];
+  const primaryImage = '/images/aboutimage1.png';
+  const secondaryImage = '/images/aboutimage2.png';
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-blush-200 px-4 py-16 lg:px-6 lg:py-24">
@@ -34,15 +33,13 @@ export default function AboutTeaser() {
 
           {/* Element 2 — smaller second polaroid, peeks from behind Element 1 */}
           <div className="absolute bottom-6 right-4 z-0 rotate-[4deg] bg-white p-2 pb-6 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.2)] lg:bottom-8 lg:right-6">
-            {secondaryImage && (
-              <Image
-                src={secondaryImage}
-                alt={products[3].name}
-                width={180}
-                height={180}
-                className="h-[140px] w-[180px] object-cover lg:h-[160px]"
-              />
-            )}
+            <Image
+              src={secondaryImage}
+              alt="Sparklet Jewels — behind the scenes"
+              width={180}
+              height={180}
+              className="h-[140px] w-[180px] object-cover lg:h-[160px]"
+            />
             <p className="mt-2 text-center font-handwritten text-[13px] text-[#9B8B91]">made with ♡</p>
           </div>
 
@@ -54,15 +51,13 @@ export default function AboutTeaser() {
             >
               <TapeStrip width={70} height={20} color="#F27AA2" />
             </div>
-            {primaryImage && (
-              <Image
-                src={primaryImage}
-                alt={products[2].name}
-                width={260}
-                height={220}
-                className="h-[220px] w-[260px] object-cover"
-              />
-            )}
+            <Image
+              src={primaryImage}
+              alt="Sparklet Jewels — behind the scenes"
+              width={260}
+              height={220}
+              className="h-[220px] w-[260px] object-cover"
+            />
             <p className="mt-2 text-center font-handwritten text-[13px] text-[#9B8B91]">the team behind the magic ✦</p>
           </div>
 
@@ -102,15 +97,6 @@ export default function AboutTeaser() {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           className="w-full lg:w-1/2 lg:pl-12"
         >
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
-            className="font-sans text-[11px] font-medium uppercase tracking-[0.15em] text-blush-600"
-          >
-            ✦ OUR STORY
-          </motion.p>
-
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

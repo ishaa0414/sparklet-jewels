@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Heart, Sparkle, Star } from '@/components/ui/ScrapbookDecorations';
+import DiamondLoader from '@/components/ui/DiamondLoader';
 
 export default function Loading() {
   return (
@@ -28,13 +29,7 @@ export default function Loading() {
       />
 
       <div className="relative flex flex-col items-center gap-5">
-        <motion.div
-          className="relative flex h-16 w-16 items-center justify-center"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'linear' }}
-        >
-          <Sparkle size={64} color="#F27AA2" />
-        </motion.div>
+        <DiamondLoader size={64} />
 
         <motion.div
           className="flex items-center gap-1.5"

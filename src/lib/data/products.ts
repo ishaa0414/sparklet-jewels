@@ -266,7 +266,7 @@ export const products: Product[] = [
     slug: 'gotham-couple-keyy',
     name: "Gotham couple keyy",
     price: 650,
-    category: 'sets',
+    category: 'charms',
     tag: 'bestseller',
     description: "because matching is always a good idea ♡",
     material: "Metal alloy, mixed materials",

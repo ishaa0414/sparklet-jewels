@@ -26,12 +26,6 @@ function matchesCategory(product: Product, category: string) {
       return product.category === 'bracelets';
     case 'CHARMS':
       return product.category === 'charms';
-    case 'SETS':
-      return product.category === 'sets';
-    case 'NEW ARRIVALS':
-      return product.tag === 'new';
-    case 'BESTSELLERS':
-      return product.tag === 'bestseller';
     default:
       return true;
   }
@@ -146,14 +140,11 @@ export default function ShopGrid() {
 
   const resetToAll = () => handleCategoryChange('ALL');
 
-  const gridItems = visibleProducts.map((product, i) => {
-    const isPolaroid = (i + 1) % 7 === 0;
-    return (
-      <motion.div key={product.id} variants={cardVariants}>
-        <ProductCard product={product} variant={isPolaroid ? 'polaroid' : 'default'} index={i} />
-      </motion.div>
-    );
-  });
+  const gridItems = visibleProducts.map((product, i) => (
+    <motion.div key={product.id} variants={cardVariants}>
+      <ProductCard product={product} index={i} />
+    </motion.div>
+  ));
 
   return (
     <section>

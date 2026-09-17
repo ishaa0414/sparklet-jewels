@@ -13,17 +13,7 @@ export interface CategoryFilterProps {
   totalProducts: number;
 }
 
-const CATEGORIES = [
-  'ALL',
-  'EARRINGS',
-  'NECKLACES',
-  'RINGS',
-  'BRACELETS',
-  'CHARMS',
-  'SETS',
-  'NEW ARRIVALS',
-  'BESTSELLERS',
-];
+const CATEGORIES = ['ALL', 'EARRINGS', 'NECKLACES', 'RINGS', 'BRACELETS', 'CHARMS'];
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'featured' },
@@ -59,7 +49,7 @@ export default function CategoryFilter({
                 'relative shrink-0 whitespace-nowrap px-4 py-1.5 font-sans text-xs font-medium uppercase tracking-wide transition-colors duration-200',
                 active
                   ? 'text-white'
-                  : 'border-[1.5px] border-transparent text-[#9B8B91] hover:border-blush-300 hover:bg-blush-100 hover:text-blush-600'
+                  : 'border-[1.5px] border-transparent text-charcoal-soft hover:border-blush-300 hover:bg-blush-100 hover:text-blush-600'
               )}
               style={{ borderRadius: TAB_RADIUS }}
             >
@@ -81,10 +71,10 @@ export default function CategoryFilter({
       </div>
 
       <div className="mt-2 flex items-center justify-between">
-        <p className="font-sans text-[11px] text-[#9B8B91] sm:text-xs">showing {totalProducts} pieces ✦</p>
+        <p className="font-sans text-[11px] text-charcoal-soft sm:text-xs">showing {totalProducts} pieces ✦</p>
 
         <div className="flex items-center gap-2">
-          <label htmlFor="shop-sort-by" className="font-sans text-[11px] text-[#9B8B91] sm:text-xs">
+          <label htmlFor="shop-sort-by" className="font-sans text-[11px] text-charcoal-soft sm:text-xs">
             sort by:
           </label>
           <div className="relative">
