@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Fraunces, Caveat, DM_Sans } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import SplashScreen from '@/components/layout/SplashScreen';
 import './globals.css';
 
 const fraunces = Fraunces({
@@ -39,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${caveat.variable} ${dmSans.variable}`}>
       <body>
+        <SplashScreen />
         <Header />
         <main className="pt-14 lg:pt-16">{children}</main>
         <Footer />

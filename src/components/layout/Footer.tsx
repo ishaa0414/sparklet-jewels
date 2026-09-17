@@ -3,6 +3,7 @@ import { Instagram } from 'lucide-react';
 import TornEdge from '@/components/ui/TornEdge';
 import Button from '@/components/ui/Button';
 import { Heart, Star, Sparkle, ScrapbookFlower } from '@/components/ui/ScrapbookDecorations';
+import { INSTAGRAM_PROFILE_URL } from '@/lib/instagram';
 
 const SHOP_LINKS = [
   { label: 'Earrings', href: '/shop?category=earrings' },
@@ -41,7 +42,7 @@ function TikTokIcon({ size = 18 }: { size?: number }) {
 }
 
 const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://instagram.com', icon: Instagram },
+  { label: 'Instagram', href: INSTAGRAM_PROFILE_URL, icon: Instagram },
   { label: 'Pinterest', href: 'https://pinterest.com', icon: PinterestIcon },
   { label: 'TikTok', href: 'https://tiktok.com', icon: TikTokIcon },
 ];

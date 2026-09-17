@@ -1,47 +1,11 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Button from '@/components/ui/Button';
 import ProductCard from '@/components/shop/ProductCard';
 import { Sparkle } from '@/components/ui/ScrapbookDecorations';
 import { products } from '@/lib/data/products';
-import { cn } from '@/lib/utils';
-import type { Category } from '@/types';
-
-const TABS: { label: string; value: 'ALL' | Category }[] = [
-  { label: 'ALL', value: 'ALL' },
-  { label: 'EARRINGS', value: 'earrings' },
-  { label: 'NECKLACES', value: 'necklaces' },
-  { label: 'RINGS', value: 'rings' },
-  { label: 'BRACELETS', value: 'bracelets' },
-];
-
-function TabButton({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        'relative px-1 py-1 font-sans text-xs font-medium transition-colors duration-200',
-        active ? 'text-blush-500' : 'text-[#9B8B91] hover:text-blush-600'
-      )}
-    >
-      {label}
-      {active && (
-        <motion.svg
-          layoutId="homepageTab"
-          viewBox="0 0 100 6"
-          preserveAspectRatio="none"
-          className="absolute -bottom-1.5 left-0 h-1.5 w-full"
-          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-        >
-          <path d="M1 3 Q25 1 50 3 T99 3" stroke="#E94F83" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-        </motion.svg>
-      )}
-    </button>
-  );
-}
 
 function AnimatedCell({
   staggerIndex,
@@ -69,14 +33,10 @@ function AnimatedCell({
 }
 
 export default function ProductGrid() {
-  const [activeTab, setActiveTab] = useState<'ALL' | Category>('ALL');
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
 
-  const featuredProducts = useMemo(() => {
-    const filtered = activeTab === 'ALL' ? products : products.filter((p) => p.category === activeTab);
-    return filtered.slice(0, 8);
-  }, [activeTab]);
+  const featuredProducts = useMemo(() => products.slice(0, 8), []);
 
   const variantFor = (index: number): 'default' | 'featured' | 'polaroid' => {
     if (index === 4) return 'featured';
@@ -111,7 +71,7 @@ export default function ProductGrid() {
               className="mt-2 font-display font-[900] text-charcoal"
               style={{ fontSize: 'clamp(28px, 3.5vw, 40px)' }}
             >
-              MOST LOVED
+              SHOP THESE PRODUCTS
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -130,18 +90,7 @@ export default function ProductGrid() {
           </div>
         </div>
 
-        <div className="mb-8 flex items-center gap-6 border-b border-blush-200 pb-3 lg:mb-10">
-          {TABS.map((tab) => (
-            <TabButton
-              key={tab.value}
-              label={tab.label}
-              active={activeTab === tab.value}
-              onClick={() => setActiveTab(tab.value)}
-            />
-          ))}
-        </div>
-
-        <div key={activeTab} className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 lg:gap-5">
           {featuredProducts.map((product, index) => (
             <AnimatedCell key={product.id} staggerIndex={index}>
               <ProductCard product={product} variant={variantFor(index)} index={index} />

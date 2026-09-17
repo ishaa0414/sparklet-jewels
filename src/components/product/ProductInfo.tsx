@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Minus, Plus, Heart as LucideHeart } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import { openWhatsAppOrder } from '@/lib/whatsapp';
 import { formatPrice, cn } from '@/lib/utils';
 import type { Product, ProductTag } from '@/types';
 
@@ -26,8 +27,8 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const decrement = () => setQuantity((q) => Math.max(1, q - 1));
   const increment = () => setQuantity((q) => Math.min(10, q + 1));
 
-  const handleAddToBag = () => {
-    console.log('added to bag:', product.name, 'x', quantity);
+  const handleOrderViaWhatsApp = () => {
+    openWhatsAppOrder(product.name, quantity, product.slug);
   };
 
   return (
@@ -122,13 +123,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       <div className="hidden lg:block">
         <motion.button
           type="button"
-          onClick={handleAddToBag}
+          onClick={handleOrderViaWhatsApp}
           whileHover={{ backgroundColor: '#D93670', y: -2 }}
           whileTap={{ scale: 0.98 }}
           className="mt-4 w-full font-sans text-[15px] font-semibold text-white"
           style={{ height: '52px', borderRadius: '4px 10px 6px 8px', backgroundColor: '#E94F83' }}
         >
-          ADD TO BAG ♡
+          ORDER ON WHATSAPP ♡
         </motion.button>
       </div>
 
@@ -157,12 +158,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </span>
         <motion.button
           type="button"
-          onClick={handleAddToBag}
+          onClick={handleOrderViaWhatsApp}
           whileTap={{ scale: 0.98 }}
           className={cn('flex-1 font-sans text-sm font-semibold text-white')}
           style={{ height: '44px', borderRadius: '4px 10px 6px 8px', backgroundColor: '#E94F83', maxWidth: '220px' }}
         >
-          ADD TO BAG ♡
+          ORDER ON WHATSAPP ♡
         </motion.button>
       </div>
     </div>

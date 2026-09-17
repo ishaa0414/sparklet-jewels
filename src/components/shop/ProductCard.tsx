@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Heart as LucideHeart } from 'lucide-react';
 import { Heart, Sparkle, TapeStrip } from '@/components/ui/ScrapbookDecorations';
+import { openWhatsAppOrder } from '@/lib/whatsapp';
 import { cn, formatPrice } from '@/lib/utils';
 import type { Product, ProductTag } from '@/types';
 
@@ -208,10 +209,10 @@ export default function ProductCard({ product, variant = 'default', index, class
   const showTape = variant === 'default' ? index !== undefined && index % 2 === 0 : true;
   const showAnnotation = variant === 'default' && index !== undefined && index % 3 === 0;
 
-  const handleQuickAdd = (e: React.MouseEvent) => {
+  const handleOrderViaWhatsApp = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('added to bag:', product.name);
+    openWhatsAppOrder(product.name, 1, product.slug);
   };
 
   if (variant === 'polaroid') {
@@ -438,13 +439,13 @@ export default function ProductCard({ product, variant = 'default', index, class
 
           <motion.button
             type="button"
-            onClick={handleQuickAdd}
+            onClick={handleOrderViaWhatsApp}
             whileHover={{ scale: 1.01, backgroundColor: '#D93670' }}
             whileTap={{ scale: 0.98 }}
             className="relative z-20 mt-2.5 w-full font-sans text-xs font-medium text-white"
             style={{ height: '36px', borderRadius: '3px', backgroundColor: '#E94F83' }}
           >
-            ADD TO BAG ♡
+            ORDER ON WHATSAPP ♡
           </motion.button>
         </div>
       </motion.article>

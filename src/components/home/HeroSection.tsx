@@ -29,7 +29,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative block h-screen w-full md:hidden"
+        className="relative block max-h-screen w-full md:hidden"
+        style={{ aspectRatio: '941 / 1672' }}
       >
         <Image
           src="/images/hero-mobile-bg.png"
@@ -37,7 +38,25 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-contain"
+        />
+      </motion.div>
+
+      {/* Tablet hero artwork */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="relative hidden max-h-screen w-full md:block lg:hidden"
+        style={{ aspectRatio: '1448 / 1086' }}
+      >
+        <Image
+          src="/images/herotab.png"
+          alt="Sparklet Jewels — jewellery for your main character era. Trendy charms, everyday joy."
+          fill
+          priority
+          sizes="100vw"
+          className="object-contain"
         />
       </motion.div>
 
@@ -46,7 +65,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative hidden h-screen w-full md:block"
+        className="relative hidden h-screen w-full lg:block"
       >
         <Image
           src="/images/hero-desktop-bg.png"
