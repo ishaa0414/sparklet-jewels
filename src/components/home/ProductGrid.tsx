@@ -7,15 +7,7 @@ import ProductCard from '@/components/shop/ProductCard';
 import { Sparkle } from '@/components/ui/ScrapbookDecorations';
 import { products } from '@/lib/data/products';
 
-const FEATURED_SLUGS = [
-  'deerly-yours-couple-rings',
-  'everlasting-spark-couple-necklace',
-  'gotham-couple-keyy',
-  'crystal-cross',
-  'golden-initial-letters-necklace',
-  'frozen-star-dust',
-  'y2k-glam-combo',
-];
+const LATEST_COUNT = 8;
 
 function AnimatedCell({
   staggerIndex,
@@ -47,7 +39,7 @@ export default function ProductGrid() {
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
 
   const featuredProducts = useMemo(
-    () => FEATURED_SLUGS.map((slug) => products.find((p) => p.slug === slug)).filter((p): p is (typeof products)[number] => Boolean(p)),
+    () => [...products].sort((a, b) => Number(b.id) - Number(a.id)).slice(0, LATEST_COUNT),
     []
   );
 
