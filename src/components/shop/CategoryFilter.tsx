@@ -13,7 +13,7 @@ export interface CategoryFilterProps {
   totalProducts: number;
 }
 
-const CATEGORIES = ['ALL', 'EARRINGS', 'NECKLACES', 'RINGS', 'BRACELETS', 'CHARMS'];
+const CATEGORIES = ['ALL', 'EARRINGS', 'NECKLACES', 'RINGS', 'BRACELETS', 'CHARMS', 'BOOKMARKS', 'SETS', 'MINI CAMERA', 'GOTHIC', 'ANTI-TARNISH'];
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'featured' },

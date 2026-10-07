@@ -21,6 +21,7 @@ const TAG_META: Record<ProductTag, { label: string; bg: string; text: string }> 
   new: { label: 'NEW ✦', bg: '#E94F83', text: '#FFFFFF' },
   bestseller: { label: 'FAVE ♡', bg: '#242124', text: '#FFFFFF' },
   limited: { label: 'LIMITED', bg: '#F27AA2', text: '#FFFFFF' },
+  antitarnish: { label: 'ANTI-TARNISH ✦', bg: '#B8892E', text: '#FFFFFF' },
 };
 
 const ANNOTATIONS = ['so cute omg ✦', 'bestseller for a reason ♡', 'treat yourself 🎀'];
@@ -136,7 +137,6 @@ export default function ProductCard({ product, variant = 'default', index, class
   };
 
   if (variant === 'polaroid') {
-    const baseRotate = index !== undefined && index % 2 !== 0 ? 2 : -2;
     const tapeColor = index !== undefined && index % 2 !== 0 ? '#FDE7EC' : '#F8A6BC';
 
     return (
@@ -144,8 +144,7 @@ export default function ProductCard({ product, variant = 'default', index, class
         <motion.article
           className={cn('group relative bg-white', className)}
           style={{ padding: '8px 8px 32px 8px', boxShadow: '0 4px 16px rgba(0,0,0,0.10)' }}
-          initial={{ rotate: baseRotate }}
-          whileHover={{ rotate: 0, scale: 1.03 }}
+          whileHover={{ scale: 1.03 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
           onHoverStart={() => setHovered(true)}
           onHoverEnd={() => setHovered(false)}
@@ -239,15 +238,12 @@ export default function ProductCard({ product, variant = 'default', index, class
   }
 
   // 'default' variant
-  const baseRotate = index !== undefined && index % 2 !== 0 ? 0.5 : -0.5;
-
   return (
     <Link href={`/product/${product.slug}`} aria-label={product.name} className="block">
       <motion.article
         className={cn('group relative overflow-visible bg-white', className)}
         style={{ borderRadius: '2px 8px 6px 4px', border: '1.5px solid #F8A6BC' }}
-        initial={{ rotate: baseRotate }}
-        whileHover={{ y: -4, rotate: 0, boxShadow: '0 8px 24px rgba(233, 79, 131, 0.12)' }}
+        whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(233, 79, 131, 0.12)' }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
@@ -294,11 +290,16 @@ export default function ProductCard({ product, variant = 'default', index, class
             <span className="font-sans text-[15px] font-semibold text-blush-600">{formatPrice(product.price)}</span>
           </div>
 
-          {showAnnotation && (
-            <p className="mt-1.5 rotate-[-0.5deg] font-handwritten text-[13px] text-blush-400">
-              {getAnnotation(product.id)}
-            </p>
-          )}
+          {/* Always rendered so every card has the same height; hidden when not annotated */}
+          <p
+            className={cn(
+              'mt-1.5 rotate-[-0.5deg] truncate font-handwritten text-[13px] text-blush-400',
+              !showAnnotation && 'invisible'
+            )}
+            aria-hidden={!showAnnotation}
+          >
+            {showAnnotation ? getAnnotation(product.id) : ' '}
+          </p>
 
           <motion.button
             type="button"

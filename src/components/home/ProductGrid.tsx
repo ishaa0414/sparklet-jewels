@@ -10,7 +10,6 @@ import { products } from '@/lib/data/products';
 const FEATURED_SLUGS = [
   'deerly-yours-couple-rings',
   'everlasting-spark-couple-necklace',
-  'starlight-couple-necklace',
   'gotham-couple-keyy',
   'crystal-cross',
   'golden-initial-letters-necklace',

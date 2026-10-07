@@ -23,7 +23,7 @@ const MOODS: Mood[] = [
     tagline: 'Bold charms for your darker side.',
     image: '/images/gothcover.png',
     alt: 'Gothic mood — spider pendant necklaces',
-    href: '/shop?category=charms',
+    href: '/shop?category=gothic',
     rotate: '-rotate-[3deg]',
     bg: 'bg-[#E4DEDF]',
   },
@@ -44,6 +44,15 @@ const MOODS: Mood[] = [
     href: '/shop?category=charms',
     rotate: '-rotate-[2deg]',
     bg: 'bg-[#E9E2E1]',
+  },
+  {
+    title: 'ANTI-TARNISH',
+    tagline: 'Shine that lasts, wear after wear.',
+    image: '/images/antitarnishcover.jpeg',
+    alt: 'Anti-tarnish mood — golden cuffs and rings',
+    href: '/shop?category=antitarnish',
+    rotate: 'rotate-[3deg]',
+    bg: 'bg-[#EFE6DA]',
   },
 ];
 
@@ -73,7 +82,7 @@ export default function ShopByMood() {
         </motion.p>
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6 lg:gap-8">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-6">
         {MOODS.map((mood, index) => (
           <MoodCard key={mood.title} mood={mood} index={index} />
         ))}

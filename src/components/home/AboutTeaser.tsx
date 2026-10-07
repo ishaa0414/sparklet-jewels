@@ -9,8 +9,8 @@ import { Heart, ScrapbookFlower, Sparkle, TapeStrip } from '@/components/ui/Scra
 export default function AboutTeaser() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const primaryImage = '/images/aboutimage1.png';
-  const secondaryImage = '/images/aboutimage2.png';
+  const primaryImage = '/images/aboutimage1.jpg';
+  const secondaryImage = '/images/aboutimage2.jpg';
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-blush-200 px-4 py-16 lg:px-6 lg:py-24">
@@ -53,6 +53,7 @@ export default function AboutTeaser() {
             </div>
             <Image
               src={primaryImage}
+              priority
               alt="Sparklet Jewels — behind the scenes"
               width={260}
               height={220}

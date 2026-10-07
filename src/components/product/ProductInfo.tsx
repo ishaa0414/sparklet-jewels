@@ -17,6 +17,7 @@ const TAG_META: Record<ProductTag, { label: string; bg: string; text: string }> 
   new: { label: 'NEW ✦', bg: '#E94F83', text: '#FFFFFF' },
   bestseller: { label: 'FAVE ♡', bg: '#242124', text: '#FFFFFF' },
   limited: { label: 'LIMITED', bg: '#F27AA2', text: '#FFFFFF' },
+  antitarnish: { label: 'ANTI-TARNISH ✦', bg: '#B8892E', text: '#FFFFFF' },
 };
 
 export default function ProductInfo({ product }: ProductInfoProps) {

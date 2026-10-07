@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Instagram, Play } from 'lucide-react';
+import { Instagram, Play } from 'lucide-react';
 import { Heart } from '@/components/ui/ScrapbookDecorations';
 import { INSTAGRAM_PROFILE_URL } from '@/lib/instagram';
 
@@ -67,11 +67,6 @@ function ReelCard({ reel, index }: { reel: Reel; index: number }) {
 export default function InstagramReels() {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: '-100px' });
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = (direction: 1 | -1) => {
-    scrollRef.current?.scrollBy({ left: direction * 244, behavior: 'smooth' });
-  };
 
   return (
     <section className="relative overflow-hidden bg-blush-50 px-4 py-16 lg:px-6 lg:py-24">
@@ -114,25 +109,7 @@ export default function InstagramReels() {
       </div>
 
       <div className="relative mx-auto max-w-6xl">
-        <button
-          type="button"
-          aria-label="Scroll left"
-          onClick={() => scrollBy(-1)}
-          className="absolute -left-3 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-blush-300 bg-white text-charcoal-soft shadow-sm transition-colors hover:bg-blush-100 sm:flex lg:-left-5"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          type="button"
-          aria-label="Scroll right"
-          onClick={() => scrollBy(1)}
-          className="absolute -right-3 top-1/2 z-20 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-blush-300 bg-white text-charcoal-soft shadow-sm transition-colors hover:bg-blush-100 sm:flex lg:-right-5"
-        >
-          <ChevronRight size={18} />
-        </button>
-
         <div
-          ref={scrollRef}
           className="hide-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth px-1 py-1 sm:justify-center"
         >
           {REELS.map((reel, index) => (

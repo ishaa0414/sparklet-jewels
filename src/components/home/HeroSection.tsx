@@ -9,7 +9,7 @@ const MARQUEE_ITEM = 'NEW COLLECTION  ✦  HANDPICKED PIECES  ✦  MADE FOR EVER
 function MarqueeStrip() {
   const content = MARQUEE_ITEM.repeat(4);
   return (
-    <div className="relative z-10 flex h-10 items-center overflow-hidden" style={{ backgroundColor: '#242124' }}>
+    <div className="relative z-10 mt-4 flex h-10 items-center overflow-hidden" style={{ backgroundColor: '#242124' }}>
       <div className="animate-marquee flex w-max items-center whitespace-nowrap">
         <span className="px-2 font-sans text-[13px] font-medium uppercase tracking-[0.1em] text-white">
           {content}
@@ -31,7 +31,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="relative block max-h-screen w-full md:hidden"
-        style={{ aspectRatio: '941 / 1672' }}
+        style={{ aspectRatio: '1520 / 2688' }}
       >
         <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
           <Image
@@ -70,7 +70,8 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative hidden h-screen w-full lg:block"
+        className="relative hidden max-h-screen w-full lg:block"
+        style={{ aspectRatio: '2688 / 1520' }}
       >
         <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
           <Image

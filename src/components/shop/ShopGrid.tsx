@@ -26,6 +26,16 @@ function matchesCategory(product: Product, category: string) {
       return product.category === 'bracelets';
     case 'CHARMS':
       return product.category === 'charms';
+    case 'BOOKMARKS':
+      return product.category === 'bookmarks';
+    case 'MINI CAMERA':
+      return product.category === 'mini camera';
+    case 'GOTHIC':
+      return product.category === 'gothic';
+    case 'ANTI-TARNISH':
+      return product.tag === 'antitarnish';
+    case 'SETS':
+      return product.category === 'sets';
     default:
       return true;
   }
@@ -35,7 +45,7 @@ function sortProducts(list: Product[], sortBy: string) {
   const sorted = [...list];
   switch (sortBy) {
     case 'newest':
-      return sorted.sort((a, b) => Number(b.tag === 'new') - Number(a.tag === 'new'));
+      return sorted.sort((a, b) => Number(b.id) - Number(a.id));
     case 'price-asc':
       return sorted.sort((a, b) => a.price - b.price);
     case 'price-desc':
@@ -112,9 +122,9 @@ function EmptyState({ onReset }: { onReset: () => void }) {
   );
 }
 
-export default function ShopGrid() {
-  const [activeCategory, setActiveCategory] = useState('ALL');
-  const [sortBy, setSortBy] = useState('featured');
+export default function ShopGrid({ initialCategory = 'ALL' }: { initialCategory?: string }) {
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [sortBy, setSortBy] = useState('newest');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filteredProducts = useMemo(() => {

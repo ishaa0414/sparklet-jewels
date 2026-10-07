@@ -4,9 +4,12 @@ export type Category =
   | 'rings'
   | 'bracelets'
   | 'charms'
-  | 'sets';
+  | 'sets'
+  | 'bookmarks'
+  | 'mini camera'
+  | 'gothic';
 
-export type ProductTag = 'new' | 'bestseller' | 'limited';
+export type ProductTag = 'new' | 'bestseller' | 'limited' | 'antitarnish';
 
 export interface Product {
   id: string;
