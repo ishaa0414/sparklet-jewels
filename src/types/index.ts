@@ -7,7 +7,8 @@ export type Category =
   | 'sets'
   | 'bookmarks'
   | 'mini camera'
-  | 'gothic';
+  | 'gothic'
+  | 'couple';
 
 export type ProductTag = 'new' | 'bestseller' | 'limited' | 'antitarnish';
 
@@ -17,6 +18,7 @@ export interface Product {
   name: string;
   price: number;
   category: Category;
+  alsoIn?: Category[];
   tag?: ProductTag;
   description: string;
   material: string;

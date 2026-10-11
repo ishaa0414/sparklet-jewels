@@ -105,59 +105,52 @@ export default function AboutTeaser() {
             className="mt-2 font-display font-[900] leading-[1.1] text-charcoal"
             style={{ fontSize: 'clamp(28px, 3.5vw, 40px)' }}
           >
-            HI, WE&apos;RE THE
-            <br />
-            ONES BEHIND
-            <br />
-            <span className="text-blush-500">THE SPARKLE ♡</span>
+            OUR <span className="text-blush-500">STORY ♡</span>
           </motion.h2>
-
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.4, ease: 'easeOut' }}
-            className="mt-5 max-w-[420px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
+            className="mt-4 max-w-[480px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
           >
-            We started Sparklet Jewels because we believed that beautiful jewellery shouldn&apos;t cost a fortune —
-            or feel intimidating to wear.
+            Sparklet Jewels began in October 2025 with a small dream and a big hope of building something of my own. My dad always encouraged me to become an independent businesswoman, and his belief in me has been one of my biggest inspirations.
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.5, ease: 'easeOut' }}
-            className="mt-4 max-w-[420px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
+            className="mt-4 max-w-[480px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
           >
-            Every piece in our collection is handpicked by us, obsessed over for weeks, and made to become your
-            everyday favourite.
+            Along the way, my Ammi, Mama, Mami, Khala, Nani, Bhai, and Behen have stood by me with endless love and support, encouraging me to keep going even when things felt difficult.
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.6, ease: 'easeOut' }}
-            className="mt-4 inline-block rotate-[-0.5deg] font-handwritten text-xl text-blush-600"
+            className="mt-4 max-w-[480px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
           >
-            made with love, worn with magic ♡
+            Alhamdulillah, we’re almost a year into this beautiful journey! From creating jewellery and receiving our very first orders to launching our own website, every little milestone has made this dream feel more real. What started as a small idea has slowly grown into something incredibly special to me.
           </motion.p>
 
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.7, ease: 'easeOut' }}
-            className="mt-6 flex items-center gap-3"
+            className="mt-4 max-w-[480px] font-sans text-[15px] font-light leading-[1.7] text-charcoal-soft"
           >
-            <div
-              className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full border-2 border-white bg-blush-300 shadow-[0_6px_16px_-8px_rgba(0,0,0,0.25)]"
-              aria-hidden="true"
-            >
-              <span className="font-display text-2xl text-white">S</span>
-            </div>
-            <div>
-              <p className="font-sans text-sm font-semibold text-charcoal">Sparklet Jewels Team</p>
-              <p className="font-handwritten text-[13px] text-[#9B8B91]">founders &amp; jewellery obsessives ✦</p>
-            </div>
-          </motion.div>
+            A heartfelt thank you to my Ammi, Mama, Mami, Khala, Nani, Daddy, Bhai, Behen, my friends, and Isha for believing in me, supporting me, and being a part of this journey. Sparklet Jewels wouldn’t be where it is today without your love and encouragement.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: 0.8, ease: 'easeOut' }}
+            className="mt-4 inline-block rotate-[-0.5deg] font-handwritten text-xl text-blush-600"
+          >
+            This is just the beginning, InshaAllah. ♡
+          </motion.p>
         </motion.div>
       </div>
     </section>

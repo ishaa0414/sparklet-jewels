@@ -32,7 +32,7 @@ const MOODS: Mood[] = [
     tagline: 'Matching pieces for your favourite people.',
     image: '/images/couplecover.png',
     alt: 'Couple mood — matching necklaces',
-    href: '/shop?category=necklaces',
+    href: '/shop?category=couple',
     rotate: 'rotate-[2deg]',
     bg: 'bg-blush-200',
   },
@@ -134,8 +134,8 @@ function MoodCard({ mood, index }: { mood: Mood; index: number }) {
       </h3>
       <p className="mt-1.5 max-w-[220px] font-sans text-sm font-light text-charcoal-soft">{mood.tagline}</p>
 
-      <div className="mt-4">
-        <Button variant="ghost" href={mood.href} size="sm">
+      <div className="mt-auto pt-5">
+        <Button variant="outline" href={mood.href} size="sm" className="px-6 tracking-wide">
           EXPLORE →
         </Button>
       </div>

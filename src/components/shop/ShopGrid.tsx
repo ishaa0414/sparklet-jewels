@@ -7,35 +7,41 @@ import ProductCard from '@/components/shop/ProductCard';
 import Button from '@/components/ui/Button';
 import { Heart, Sparkle, Star } from '@/components/ui/ScrapbookDecorations';
 import { products } from '@/lib/data/products';
-import type { Product } from '@/types';
+import type { Category, Product } from '@/types';
 
 const PAGE_SIZE = 12;
 const LOAD_MORE_STEP = 8;
+
+function inCategory(product: Product, category: Category) {
+  return product.category === category || !!product.alsoIn?.includes(category);
+}
 
 function matchesCategory(product: Product, category: string) {
   switch (category) {
     case 'ALL':
       return true;
     case 'EARRINGS':
-      return product.category === 'earrings';
+      return inCategory(product, 'earrings');
     case 'NECKLACES':
-      return product.category === 'necklaces';
+      return inCategory(product, 'necklaces');
     case 'RINGS':
-      return product.category === 'rings';
+      return inCategory(product, 'rings');
     case 'BRACELETS':
-      return product.category === 'bracelets';
+      return inCategory(product, 'bracelets');
     case 'CHARMS':
-      return product.category === 'charms';
+      return inCategory(product, 'charms');
     case 'BOOKMARKS':
-      return product.category === 'bookmarks';
+      return inCategory(product, 'bookmarks');
     case 'MINI CAMERA':
-      return product.category === 'mini camera';
+      return inCategory(product, 'mini camera');
     case 'GOTHIC':
-      return product.category === 'gothic';
+      return inCategory(product, 'gothic');
+    case 'COUPLE':
+      return inCategory(product, 'couple');
     case 'ANTI-TARNISH':
       return product.tag === 'antitarnish';
     case 'SETS':
-      return product.category === 'sets';
+      return inCategory(product, 'sets');
     default:
       return true;
   }
