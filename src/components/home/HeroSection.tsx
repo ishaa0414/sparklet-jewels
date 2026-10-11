@@ -24,14 +24,13 @@ function MarqueeStrip() {
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative flex h-[calc(100svh-4rem)] flex-col overflow-hidden bg-white lg:h-[calc(100svh-5rem)]">
       {/* Mobile hero artwork */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative block max-h-screen w-full md:hidden"
-        style={{ aspectRatio: '1520 / 2688' }}
+        className="relative block min-h-0 w-full flex-1 md:hidden"
       >
         <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
           <Image
@@ -40,7 +39,7 @@ export default function HeroSection() {
             fill
             priority
             sizes="100vw"
-            className="object-contain"
+            className="object-cover object-top"
           />
         </Link>
       </motion.div>
@@ -50,8 +49,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative hidden max-h-screen w-full md:block lg:hidden"
-        style={{ aspectRatio: '1448 / 1086' }}
+        className="relative hidden min-h-0 w-full flex-1 md:block lg:hidden"
       >
         <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
           <Image
@@ -70,8 +68,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="relative hidden max-h-screen w-full lg:block"
-        style={{ aspectRatio: '2688 / 1520' }}
+        className="relative hidden min-h-0 w-full flex-1 lg:block"
       >
         <Link href="/shop" aria-label="Shop now" className="absolute inset-0 block">
           <Image
