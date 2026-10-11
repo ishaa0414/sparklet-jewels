@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '919304944981';
+const WHATSAPP_NUMBER = '917666721492';
 
 export function buildOrderMessage(productName: string, quantity = 1, productUrl?: string) {
   const qtyPart = quantity > 1 ? ` x${quantity}` : '';

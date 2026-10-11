@@ -73,7 +73,7 @@ export default function Footer() {
               Questions about an order or a piece? Message us directly.
             </p>
             <a
-              href="https://wa.me/919304944981"
+              href="https://wa.me/917666721492"
               target="_blank"
               rel="noreferrer noopener"
               className="mt-3 inline-flex items-center gap-2 text-charcoal-soft transition-colors duration-200 hover:text-blush-500"
